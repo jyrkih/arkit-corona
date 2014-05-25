@@ -1,0 +1,54 @@
+-- Supported values for orientation:
+-- portrait, portraitUpsideDown, landscapeLeft, landscapeRight
+
+settings = {
+	
+	orientation = {
+		default = "portrait",
+		supported = { "portrait", "portraitUpsideDown", "landscapeLeft", "landscapeRight"} --,  "landscapeLeft", "landscapeRight"}
+	},
+	
+	iphone = {
+		plist = {
+			UIStatusBarHidden = false,
+			UIPrerenderedIcon = true, -- set to false for "shine" overlay
+			--UIApplicationExitsOnSuspend = true, -- uncomment to quit app on suspend
+
+            --[[
+            -- iOS app URL schemes:
+            CFBundleURLTypes =
+            {
+                {
+                    CFBundleURLSchemes =
+                    {
+                        "fbXXXXXXXXXXXXXX", -- example scheme for facebook
+                        "coronasdkapp", -- example second scheme
+                    }
+                }
+            }
+            --]]
+		}
+	},
+	
+	android =
+    {
+        usesPermissions =
+        {
+            -- Permission to retrieve current location from the GPS.
+            "android.permission.ACCESS_FINE_LOCATION",
+
+            -- Permission to retrieve current location from WiFi or cellular service.
+            "android.permission.ACCESS_COARSE_LOCATION",
+            "android.permission.INTERNET",
+        },
+    },
+    
+    --[[
+	-- Android permissions
+
+	androidPermissions = {
+  		"android.permission.INTERNET",
+  	},
+
+	]]--
+}
