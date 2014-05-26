@@ -155,9 +155,9 @@ function M:new(parentGroup, delegate)
     function c:updateCenterCoordinate()
         local adjustment = 0;
         if self.cameraOrientation=="landscapeLeft" then
-            adjustment = degreesToRadian(270); 
+            adjustment = degreesToRadian(90); 
         elseif self.cameraOrientation=="landscapeRight" then
-            adjustment = degreesToRadian(90)
+            adjustment = degreesToRadian(-90)
         elseif self.cameraOrientation=="portraitUpsideDown" then
             adjustment = degreesToRadian(180)
         else
