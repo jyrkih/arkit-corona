@@ -2,18 +2,16 @@
 local ar = require("arkit.arkit")
 
 print(ar.deviceSupportsAR())
-
+local isSimulator = system.getInfo("environment")=="simulator"
 
 local pointsOfInterest = {
-
+    
     {longitude = -73.994901,latitude = 41.145495,altitude = 30, title="New York"},
     {longitude = 24.9354500,latitude = 60.1695200,altitude = 30, title="Helsinki"},
+    {longitude = 33.0788,latitude = 68.969,altitude = 30, title="Murmansk"},
+    {longitude =  -3.696111,latitude = 40.416667,altitude = 30, title="Madrid"},
 }
 
-
-local view = display.newGroup()
-view.x = display.contentCenterX
-view.y = display.contentCenterY
 
 local ds = display.getCurrentStage()
 local delegate = {}
@@ -85,5 +83,32 @@ function delegate:geoLocations()
     return _locations
 end
 
-controller = ar.arcontroller:new(view, ds, delegate)
+controller = ar.arcontroller:new(ds, delegate)
+controller.radarRange = 3000
+controller:setShowsRadar(true)
+controller.onlyShowItemsWithinRadarRange = true
 
+local function updater()
+    
+    local event = {}
+    event.name = "location"
+    event.longitude = 24.9354500
+    event.latitude = 60.16952
+    event.altitude = 40
+    Runtime:dispatchEvent(event)
+    
+end
+
+local gHeading = 240  
+local function header()
+    local event = {}
+    event.name = "heading"
+    event.magnetic = gHeading
+    Runtime:dispatchEvent(event)
+    gHeading = gHeading - 30
+end
+
+if isSimulator then
+    timer.performWithDelay(1000,updater)
+    timer.performWithDelay(1100,header, 1)
+end

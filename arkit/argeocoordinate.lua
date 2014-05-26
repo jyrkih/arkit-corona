@@ -59,7 +59,7 @@ function M:coordinateWithLocation(location, title, fromOrigin)
         end
         self.setInclination = angle;
         self.azimuth = angleFromCoordinate(origin, self.geoLocation);
-        print(string.format("distance from %s is %f, angle is %f, azimuth is %f",self.title, self.distanceFromOrigin, angle, self.azimuth))
+        print(string.format("distance from %s is %f, angle is %f, azimuth is %f",self.title, self.distanceFromOrigin, angle, math.deg(self.azimuth)))
     end
     
     argeo.geoLocation = location
