@@ -141,7 +141,7 @@ function M:new(parentGroup, delegate)
     
     function c:enterFrame()
         if not isSimulator then
-            --     self.displayView.preview.fill = { type="camera" }
+                 c.camView.fill = { type="camera" }
         end
     end
     
@@ -200,7 +200,7 @@ function M:new(parentGroup, delegate)
             --if (gradToRotate < 0) then
             --    gradToRotate = 360 + gradToRotate
             --end
-            print("gradToRotate",gradToRotate)
+            --print("gradToRotate",gradToRotate)
             self.radarViewPort.rotation = gradToRotate
         end
     end
