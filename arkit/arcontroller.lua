@@ -325,7 +325,7 @@ function M:new(parentGroup, delegate)
     end
     
     function c:removeCoordinates(coordinates)
-        for k,v in ipairs(coordinates) do
+        for k,v in pairs(coordinates) do
             self.coordinates[k] = nil
         end
     end
